@@ -34,12 +34,12 @@ warning('off', 'MATLAB:rankDeficientMatrix')
 
 for x = 1:h
     for y = 1:w
-        i = squeeze(image_stack(1,1,:));
+        i = squeeze(image_stack(x,y,:));
         scriptI = diag(i);
 %         g = mldivide(scriptI * scriptV, scriptI * i);
         g = linsolve(scriptI * scriptV, scriptI * i);
-        albedo(h, w) = norm(g);
-        normal(h, w, :) = g / albedo(h, w);
+        albedo(x, y, 1) = norm(g);
+        normal(x, y, :) = g / albedo(x, y);
     end
 end
 
