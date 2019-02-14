@@ -39,7 +39,7 @@ for x = 1:h
 %         g = mldivide(scriptI * scriptV, scriptI * i);
         g = linsolve(scriptI * scriptV, scriptI * i);
         albedo(x, y, 1) = norm(g);
-        normal(x, y, :) = g / albedo(x, y);
+        normal(x, y, :) = g ./ albedo(x, y);
     end
 end
 
