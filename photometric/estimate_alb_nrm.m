@@ -10,7 +10,7 @@ function [ albedo, normal ] = estimate_alb_nrm( image_stack, scriptV, shadow_tri
 
 
 [h, w, ~] = size(image_stack);
-if margin == 2
+if nargin == 2
     shadow_trick = true;
 end
 
@@ -29,15 +29,18 @@ normal = zeros(h, w, 3);
 %   albedo at this point is |g|
 %   normal at this point is g / |g|
 
-
-
-% =========================================================================
-
 for x = 1:h
     for y = 1:w
-        i = squeeze(image_stack(x,y,:))
+        i = squeeze(image_stack(1,1,:));
+        scriptI = diag(i);
+%         g = mldivide(scriptI * scriptV, scriptI * i);
+        g = linsolve(scriptI * scriptV, scriptI * i);
+        albedo(h, w) = norm(g);
+        normal(h, w, :) = g / albedo(h, w);
     end
 end
+
+% =========================================================================
 
 end
 
