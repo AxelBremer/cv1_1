@@ -10,7 +10,7 @@ function [ albedo, normal ] = estimate_alb_nrm( image_stack, scriptV, shadow_tri
 
 
 [h, w, ~] = size(image_stack);
-if nargin == 2
+if margin == 2
     shadow_trick = true;
 end
 
@@ -32,6 +32,12 @@ normal = zeros(h, w, 3);
 
 
 % =========================================================================
+
+for x = 1:h
+    for y = 1:w
+        i = squeeze(image_stack(x,y,:))
+    end
+end
 
 end
 
