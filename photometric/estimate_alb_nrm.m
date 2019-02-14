@@ -29,6 +29,9 @@ normal = zeros(h, w, 3);
 %   albedo at this point is |g|
 %   normal at this point is g / |g|
 
+% suppress the rank deficient matrix warning
+warning('off', 'MATLAB:rankDeficientMatrix')
+
 for x = 1:h
     for y = 1:w
         i = squeeze(image_stack(1,1,:));
