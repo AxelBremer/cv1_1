@@ -33,15 +33,15 @@ SE(SE <= threshold) = NaN; % for good visualization
 fprintf('Number of outliers: %d\n\n', sum(sum(SE > threshold)));
 
 %% compute the surface height
-height_map = construct_surface( p, q );
+height_map = construct_surface( p, q, 'average' );
 
 %% Display
 show_results(albedo, normals, SE);
-% % show_model(albedo, height_map);
-
+show_model(albedo, height_map);
 
 %% Face
-[image_stack, scriptV] = load_face_images('./yaleB02/');
+face_dir = strcat(pwd,'/photometrics_images/yaleB02');
+[image_stack, scriptV] = load_face_images(face_dir);
 [h, w, n] = size(image_stack);
 fprintf('Finish loading %d images.\n\n', n);
 disp('Computing surface albedo and normal map...')
@@ -56,7 +56,7 @@ SE(SE <= threshold) = NaN; % for good visualization
 fprintf('Number of outliers: %d\n\n', sum(sum(SE > threshold)));
 
 %% compute the surface height
-height_map = construct_surface( p, q );
+height_map = construct_surface( p, q, 'column');
 
 show_results(albedo, normals, SE);
 show_model(albedo, height_map);
