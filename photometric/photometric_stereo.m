@@ -37,7 +37,7 @@ height_map = construct_surface( p, q );
 
 %% Display
 show_results(albedo, normals, SE);
-show_model(albedo, height_map);
+% % show_model(albedo, height_map);
 
 
 %% Face
