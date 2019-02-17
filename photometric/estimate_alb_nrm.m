@@ -29,17 +29,14 @@ normal = zeros(h, w, 3);
 %   albedo at this point is |g|
 %   normal at this point is g / |g|
 
-% suppress the rank deficient matrix warning
-warning('off', 'MATLAB:rankDeficientMatrix')
-
 for x = 1:h
     for y = 1:w
         i = squeeze(image_stack(x,y,:));
         scriptI = diag(i);
-%         g = mldivide(scriptI * scriptV, scriptI * i);
-        g = linsolve(scriptI * scriptV, scriptI * i);
+        g = mldivide(scriptI * scriptV, scriptI * i);
+%         [g, ~] = linsolve(scriptI * scriptV, scriptI * i);
         albedo(x, y, 1) = norm(g);
-        normal(x, y, :) = g ./ albedo(x, y);
+        normal(x, y, :) = g / albedo(x, y, 1);
     end
 end
 
