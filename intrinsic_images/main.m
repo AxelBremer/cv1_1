@@ -1,5 +1,5 @@
-albedo = double(imread('ball_albedo.png'));
-shading = double(imread('ball_shading.png'));
+albedo = imread('ball_albedo.png');
+shading = imread('ball_shading.png');
 ball = imread('ball.png');
 
 iid_image_formation(albedo,shading,ball);
