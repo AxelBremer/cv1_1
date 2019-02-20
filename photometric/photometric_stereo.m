@@ -38,9 +38,9 @@ height_map = construct_surface( p, q, 'average' );
 %%
 %surf(height_map);
 [x_end, y_end, ~] = size(height_map);
-x = 1:16:x_end;
-y = 1:16:y_end;
-quiver3(x, y, height_map(1:16:end, 1:16:end), normals(1:16:end,1:16:end,1), normals(1:16:end,1:16:end,2), normals(1:16:end,1:16:end,3))
+x = 1:6:x_end;
+y = 1:6:y_end;
+quiver3(x, y, height_map(1:6:end, 1:6:end), normals(1:6:end,1:6:end,1), normals(1:6:end,1:6:end,2), normals(1:6:end,1:6:end,3))
 
 %% Display
 show_results(albedo, normals, SE);
@@ -52,7 +52,7 @@ face_dir = strcat(pwd,'/photometrics_images/yaleB02/');
 [h, w, n] = size(image_stack);
 fprintf('Finish loading %d images.\n\n', n);
 disp('Computing surface albedo and normal map...')
-[albedo, normals] = estimate_alb_nrm(image_stack, scriptV, false);
+[albedo, normals] = estimate_alb_nrm(image_stack, scriptV, true);
 
 %% integrability check: is (dp / dy  -  dq / dx) ^ 2 small everywhere?
 disp('Integrability checking')
